@@ -1,0 +1,12 @@
+#공통
+**/.DS_Store
+
+#client
+
+
+
+#server
+/server/venv/
+/server/env/
+/server/myenv/
+
