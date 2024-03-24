@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: transcendence-client
+        target: /client
+    ports:
+      - '8080:8080'
+  backend:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: transcendence-server
+        target: /server
+    ports:
+      - '4000:4000'
+
+volumes:
+  transcendence-client:
+    name: transcendence-client
+    driver: local
+    driver_opts:
+      device: ./client
+      type: none
+      o: bind
+  transcendence-server:
+    name: transcendence-server
+    driver: local
+    driver_opts:
+      device: ./server
+      type: none
+      o: bind
