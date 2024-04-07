@@ -1,8 +1,8 @@
 export default class Component {
   constructor($element) {
-    this.$container = document.createElement("div");
-    $element.appendChild(this.$container);
-    this.$element = this.$container;
+    this.$container = document.createElement('div')
+    $element.appendChild(this.$container)
+    this.$element = this.$container
   }
 
   setTemplate() {}
@@ -12,17 +12,17 @@ export default class Component {
   setEvent() {}
 
   setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
+    this.state = { ...this.state, ...newState }
+    this.render()
   }
 
   template() {
-    return "";
+    return ''
   }
 
   render() {
-    this.$element.innerHTML = this.setTemplate();
-    this.setTemplate();
-    this.setEvent();
+    this.$element.innerHTML = this.template()
+    this.setTemplate()
+    this.setEvent()
   }
 }

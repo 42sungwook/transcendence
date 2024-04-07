@@ -1,13 +1,15 @@
 module.exports = {
   compilerOptions: {
-    baseUrl: '.',
+    baseUrl: ".",
     paths: {
-      '@': ['./src'],
-      '@pages': ['./src/pages'],
-      '@components': ['./src/components'],
-      '@constants': ['./src/constants'],
-      '@utils': ['./utils']
-    }
+      "@": ["./src"],
+      "@core": ["./src/core"],
+      "@pages": ["./src/pages"],
+      "@components": ["./src/components"],
+      "@constants": ["./src/constants"],
+      "@route": ["./src/route"],
+      "@utils": ["./utils"],
+    },
   },
-  exclude: ['dist', 'node_modules']
-}
+  exclude: ["dist", "node_modules"],
+};
