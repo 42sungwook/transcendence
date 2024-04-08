@@ -17,7 +17,7 @@ let leftPaddleY = boardHeight / 2 - paddleHeight / 2;
 let rightPaddleY = boardHeight / 2 - paddleHeight / 2;
 
 // WebSocket 연결
-const gameSocket = new WebSocket("ws://" + window.location.host + "/ws/game/");
+const gameSocket = new WebSocket("ws://localhost:8000/ws/game/");
 
 gameSocket.onmessage = function (e) {
   const data = JSON.parse(e.data);
