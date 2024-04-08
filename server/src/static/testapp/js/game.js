@@ -5,7 +5,6 @@ const rightPaddle = document.getElementById("right-paddle");
 const ball = document.getElementById("ball");
 
 // 게임 변수
-
 const boardWidth = gameBoard.offsetWidth;
 const boardHeight = gameBoard.offsetHeight;
 const paddleHeight = leftPaddle.offsetHeight;
@@ -16,44 +15,79 @@ let ballSpeedX = 3;
 let ballSpeedY = 3;
 let leftPaddleY = boardHeight / 2 - paddleHeight / 2;
 let rightPaddleY = boardHeight / 2 - paddleHeight / 2;
-let paddleSpeed = 10;
+
+// WebSocket 연결
+const gameSocket = new WebSocket("ws://" + window.location.host + "/ws/game/");
+
+gameSocket.onmessage = function (e) {
+  const data = JSON.parse(e.data);
+
+  if (data.type === "move_paddle") {
+    const paddle = data.player === "left" ? leftPaddle : rightPaddle;
+    paddle.style.top = `${data.position}px`;
+  }
+};
 
 // 패들 이동 함수
+document.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "ArrowUp":
+      if (leftPaddleY > 0) {
+        leftPaddleY -= 50;
+        gameSocket.send(
+          JSON.stringify({
+            type: "move_paddle",
+            player: "left",
+            position: leftPaddleY,
+          })
+        );
+      }
+      break;
+    case "ArrowDown":
+      if (leftPaddleY < boardHeight - paddleHeight) {
+        leftPaddleY += 50;
+        gameSocket.send(
+          JSON.stringify({
+            type: "move_paddle",
+            player: "left",
+            position: leftPaddleY,
+          })
+        );
+      }
+      break;
+    case "w":
+      if (rightPaddleY > 0) {
+        rightPaddleY -= 50;
+        gameSocket.send(
+          JSON.stringify({
+            type: "move_paddle",
+            player: "right",
+            position: rightPaddleY,
+          })
+        );
+      }
+      break;
+    case "s":
+      if (rightPaddleY < boardHeight - paddleHeight) {
+        rightPaddleY += 50;
+        gameSocket.send(
+          JSON.stringify({
+            type: "move_paddle",
+            player: "right",
+            position: rightPaddleY,
+          })
+        );
+      }
+      break;
+  }
+});
 
+// 공 위치 초기화 함수
 function resetBallPosition() {
   ballX = boardWidth / 2;
   ballY = boardHeight / 2;
   ballSpeedX = -ballSpeedX; // 반대 방향으로 이동
 }
-
-document.addEventListener("keydown", (e) => {
-  switch (e.key) {
-    case "ArrowUp":
-      if (leftPaddleY > 0) {
-        leftPaddleY -= paddleSpeed;
-        leftPaddle.style.top = `${leftPaddleY}px`;
-      }
-      break;
-    case "ArrowDown":
-      if (leftPaddleY < boardHeight - paddleHeight) {
-        leftPaddleY += paddleSpeed;
-        leftPaddle.style.top = `${leftPaddleY}px`;
-      }
-      break;
-    case "w":
-      if (rightPaddleY > 0) {
-        rightPaddleY -= paddleSpeed;
-        rightPaddle.style.top = `${rightPaddleY}px`;
-      }
-      break;
-    case "s":
-      if (rightPaddleY < boardHeight - paddleHeight) {
-        rightPaddleY += paddleSpeed;
-        rightPaddle.style.top = `${rightPaddleY}px`;
-      }
-      break;
-  }
-});
 
 // 공 움직임 함수
 function moveBall() {
