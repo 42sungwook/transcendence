@@ -32,3 +32,16 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+#player-names {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#player-left,
+#player-right {
+  font-size: 20px;
+  font-weight: bold;
+}
