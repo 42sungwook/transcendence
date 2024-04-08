@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   frontend:
@@ -11,7 +11,7 @@ services:
         source: transcendence-client
         target: /client
     ports:
-      - '8080:8080'
+      - "8080:8080"
   backend:
     container_name: server
     build:
@@ -22,7 +22,7 @@ services:
         source: transcendence-server
         target: /server
     ports:
-      - '4000:4000'
+      - "4000:4000"
 
 volumes:
   transcendence-client:

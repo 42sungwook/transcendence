@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Image Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <link rel="stylesheet" href="{% static 'testapp/css/style.css' %}" />
+  </head>
+  <body>
+    <div id="game-board">
+      <div id="left-paddle" class="paddle"></div>
+      <div id="right-paddle" class="paddle"></div>
+      <div id="ball"></div>
+    </div>
+    <script src="{% static 'testapp/js/game.js' %}"></script>
+  </body>
+</html>
