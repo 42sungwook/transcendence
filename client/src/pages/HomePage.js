@@ -9,31 +9,32 @@ export default class HomePage extends Component {
   }
   template() {
     const menuItems = [
-      { title: 'Menu Item 1', description: 'Description for Menu Item 1' },
-      { title: 'Menu Item 2', description: 'Description for Menu Item 2' },
-      { title: 'Menu Item 3', description: 'Description for Menu Item 3' },
-      { title: 'Menu Item 4', description: 'Description for Menu Item 4' },
-      { title: 'Menu Item 5', description: 'Description for Menu Item 5' },
-      { title: 'Menu Item 6', description: 'Description for Menu Item 6' }
+      { title: 'AI' },
+      { title: 'Local' },
+      { title: 'Online' },
+      { title: 'Profile' },
+      { title: 'Tournament' },
+      { title: 'Settings' }
     ]
 
     const cardElements = menuItems
       .map(
         (item) => `
-			<div class="col-md-4 mb-4">
-				<div class="card">
-						<a href="#" class="btn btn-primary w-100 h-100">${item.title}</a>
-				</div>
-			</div>
-		`
+					<div class="col-md-4 h-25">
+						<div class="card h-100 w-100 d-flex align-items-center justify-content-center">
+							<a href="#" class="btn btn-primary text-black border-black w-100 h-100 d-flex align-items-center justify-content-center fs-3 fw-bold" style="background-color: #FFFFFF;">${item.title}</a>
+						</div>
+					</div>
+				`
       )
       .join('')
 
     return `
 			<div class="container py-4 w-100 h-100">
-				<h1 class="text-center mb-4">Home Page</h1>
-				<div class="row">
-					${cardElements}
+				<div class="row h-100 justify-content-center align-items-center">
+					<div class="row h-75 justify-content-center align-items-center">
+						${cardElements}
+					</div>
 				</div>
 			</div>
 		`

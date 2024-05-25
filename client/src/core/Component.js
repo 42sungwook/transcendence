@@ -1,8 +1,8 @@
 export default class Component {
   constructor($element) {
-    this.$container = document.createElement('div')
-    $element.appendChild(this.$container)
-    this.$element = this.$container
+    this.$element = $element
+    this.state = {} // Initialize state if necessary
+    this.render()
   }
 
   setTemplate() {}

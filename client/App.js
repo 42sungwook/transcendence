@@ -10,7 +10,7 @@ export default class App extends Component {
 
   // default template cannot be null
   template() {
-    return '<div></div>'
+    return '<div class="w-100 h-100"></div>'
   }
 
   setTemplate() {
